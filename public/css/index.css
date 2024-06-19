@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+}
+main {
+    width: 800px;
+}
+a, button{
+    cursor: pointer;
+}
+.table {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.buttons {
+    display: flex;
+}
+.wrapper {
+    display: flex;
+}
+.abuttons,
+button,
+.create {
+    display: block;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all 0.35s;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.abuttons span {
+    position: relative;
+    z-index: 2;
+}
+
+.abuttons:after,
+button::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #ff003b;
+    transition: all 0.35s;
+    border-radius: 1px;
+}
+.edit::after {
+    background: green;
+}
+.view::after {
+    background: blue;
+}
+.abuttons:hover {
+    color: #fff;
+}
+
+.abuttons:hover:after {
+    width: 100%;
+}
+
+.session-message {
+    position: absolute;
+}
+
+.create {
+    background-color: green;
+    color: white;
+}
+.double_main {
+    display: flex;
+    justify-content: end;
+}
+.TopText {
+    font-weight: bold;
+    margin-top: 30px;
+}
+.name{
+    width: 220px;
+}
+.test {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.quit{
+    position: absolute;
+    right: 0px;
+    width: auto; height: 40px;
+    border: none;
+}
