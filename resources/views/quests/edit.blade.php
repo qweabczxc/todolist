@@ -7,15 +7,16 @@
     <title>Document</title>
     <link href="{{ asset('css/edit.css') }}" rel="stylesheet">
 </head>
-
+<a href="{{ route('quest.index') }}" class="back">Назад</a>
 <body>
-         <ul>
-            @foreach ($errors->all() as $m)
-            <li>{{ $m }}</li>
-            @endforeach
-        </ul>   
+    
+    <ul>
+        @foreach ($errors->all() as $m)
+        <li>{{ $m }}</li>
+        @endforeach
+    </ul>
     <main>
-
+    
 
         <div class="left_div">
             <p class="left_p">Внесите изменение в задание</p>
@@ -36,8 +37,8 @@
             <div class="qwerwe">
                 <label for=""> Статус</label>
                 <select name="solved" id="">
-                    <option value="1">Выполнено</option>
-                    <option value="0">Не выполнено</option>
+                    <option value="1" @selected($quest->solved)>Выполнено</option>
+                    <option value="0" @selected(!$quest->solved)>Не выполнено</option>
                 </select>
             </div>
             <button>Отправить</button>

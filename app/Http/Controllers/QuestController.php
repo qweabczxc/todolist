@@ -10,16 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $quests = Quest::all();
-        return view('quests.index',[
+        return view('quests.index', [
             'quests' => $quests
         ]);
     }
-    public function create(){
+    public function create()
+    {
         return view('quests.create');
     }
-    public function store(QuestRequest $request){
+    public function store(QuestRequest $request)
+    {
         // $request->validated();
 
         Quest::create([
@@ -29,39 +32,36 @@ class QuestController extends Controller
             'users_id' => Auth::id(),
 
         ]);
-        $request->session()->flash('alert-success','Quest created');
+        $request->session()->flash('alert-success', 'Задание создано');
         return to_route('quest.index');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $quest = Quest::find($id);
-        if(!$quest || Auth::id() != $quest->users_id){
-            request()->session()->flash('error','Unable to locate the todo');
-            return to_route('quest.index')->withErrors([
-                'error' => 'Unable to locate the todo'
-            ]);
+        if (!$quest || Auth::id() != $quest->users_id) {
+            request()->session()->flash('error', 'Не удается найти задачу');
+            return to_route('quest.index');
         }
         return view('quests.show', ['quest' => $quest]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $quest = Quest::find($id);
-        if(!$quest || Auth::id() != $quest->users_id){
-            request()->session()->flash('error','Unable to locate the todo');
-            return to_route('quest.index')->withErrors([
-                'error' => 'Unable to locate the todo'
-            ]);
+        if (!$quest || Auth::id() != $quest->users_id) {
+            request()->session()->flash('error', 'Не удается найти задачу');
+            return to_route('quest.index');
         }
         return view('quests.edit', ['quest' => $quest]);
     }
 
-    public function update(QuestRequest $request){
+    public function update(QuestRequest $request)
+    {
         $quest = Quest::find($request->quest_id);
-        if(!$quest || Auth::id() != $quest->users_id){
-            request()->session()->flash('error','Unable to locate the todo');
-            return to_route('quest.index')->withErrors([
-                'error' => 'Unable to locate the todo'
-            ]);
+        if (!$quest || Auth::id() != $quest->users_id) {
+            request()->session()->flash('error', 'Не удается найти задачу');
+            return to_route('quest.index');
         }
 
         $quest->update([
@@ -70,21 +70,21 @@ class QuestController extends Controller
             'solved' => $request->solved
 
         ]);
-        request()->session()->flash('alert-info','Updated successfully');
+        request()->session()->flash('alert-info', 'Успешно обновлено');
         return to_route('quest.index');
     }
 
 
-    public function destroy(QuestRequest $request){
+    public function destroy(QuestRequest $request)
+    {
         $quest = Quest::find($request->quest_id);
-        if(!$quest || Auth::id() != $quest->users_id){
-            request()->session()->flash('error','Unable to locate the todo');
-            return to_route('quest.index')->withErrors([
-                'error' => 'Unable to locate the todo'
-            ]);
+        if (!$quest || Auth::id() != $quest->users_id) {
+            request()->session()->flash('error', 'Не удается найти задачу');
+            return to_route('quest.index');
         }
         $quest->delete();
-        request()->session()->flash('alert-success','Deleted successfully');
+        request()->session()->flash('alert-success', 'Успешно удалено');
         return to_route('quest.index');
     }
+
 }

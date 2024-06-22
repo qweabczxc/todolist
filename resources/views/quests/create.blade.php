@@ -7,7 +7,7 @@
     <title>Document</title>
     <link href="{{ asset('css/edit.css') }}" rel="stylesheet">
 </head>
-
+<a href="{{ route('quest.index') }}" class="back">Назад</a>
 <body>
             <ul>
             @foreach ($errors->all() as $m)
@@ -21,10 +21,13 @@
         </div>
         <form method="post" action="{{ route('quest.store') }}">
             @csrf
-            <label>Название</label>
-            <input type="text" name="name">
-            <label>Описание</label>
-            <textarea name="text"></textarea>
+            <div class="qwerwe"> <label>Название</label>
+                <input type="text" name="name" >
+            </div>
+            <div class="qwerwe">
+                <label>Описание</label>
+                <textarea name="text"></textarea>
+            </div>
             <button>Отправить</button>
         </form>
     </main>

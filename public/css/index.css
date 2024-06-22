@@ -107,7 +107,16 @@ button::after {
 }
 .quit{
     position: absolute;
-    right: 0px;
+    right: 15px;
     width: auto; height: 40px;
     border: none;
+}
+.session-message{
+    font-weight: bold;
+}
+.create{
+    margin-top: 12px;
+}
+.xdlmao{
+    font-size: 123px;
 }

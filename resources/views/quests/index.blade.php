@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <ul>
         @foreach ($errors->all() as $m)
@@ -23,24 +24,28 @@
 
     @endif
     <form action="{{ route('logout') }}" method="post">
-    @csrf
-    <button class="quit">Выход</button>
-</form>
+        @csrf
+        <button class="quit">Выход</button>
+    </form>
+
     <main>
-        <p class="TopText">название</p>
+        <p class="TopText">Название</p>
 
         @if(count($quests) > 0)
         @foreach($quests as $quest)
         @if($quest->users_id == Auth::id())
-
+        
+   
+        
+    
         <div class="table">
+            
             <div class="test">
+
+            <input type="checkbox" name="solved" value="1" @checked($quest->solved) />
+
                 <p class="name">{{Str::limit($quest->name ,15  ) }}</p>
-                @if ($quest->solved)
-                <p class="true">Выполнено</p>
-                @else
-                <p class="false">Не выполнено</p>
-                @endif
+
             </div>
 
 
@@ -58,7 +63,9 @@
             </div>
 
         </div>
+        
         @endif
+        
         @endforeach
 
 

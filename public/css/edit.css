@@ -6,7 +6,11 @@
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
-
+.back{
+    position: absolute;
+    left: 2px;
+    top: 2px;
+}
 body {
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
@@ -16,11 +20,7 @@ body {
     height: 100vh;
     align-items: center;
 }
-main {
-    display: flex;
-    align-items: center;
-    width: 350px;
-}
+
 .qwerwe {
     display: flex;
     flex-direction: column;
@@ -37,8 +37,8 @@ select {
     width: 100%;
     outline: none;
 }
-button{
-      background-color: #512da8;
+button {
+    background-color: #512da8;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -50,16 +50,19 @@ button{
     margin-top: 10px;
     cursor: pointer;
 }
-
-.left_p{
-  width: 170px;
-  text-align: center;
-  font-weight: bold;
-
+.left_div {
+    display: flex;
+    justify-content: center;
 }
-label{
-  font-weight: bold;
+.left_p {
+    width: 170px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
-textarea{
+label {
+    font-weight: bold;
+}
+textarea {
     height: 60px;
 }

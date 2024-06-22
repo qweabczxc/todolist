@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <a href="{{ url()->previous() }}">Go back</a>
+    <a href="{{ route('quest.index') }}">Назад</a>
     <main>
         <table>
             <tr><th><p>Название: </p></th>
