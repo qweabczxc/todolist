@@ -7,7 +7,7 @@
     <title>Document</title>
     <link href="{{ asset('css/edit.css') }}" rel="stylesheet">
 </head>
-<a href="{{ route('quest.index') }}" class="back">Назад</a>
+
 <body>
             <ul>
             @foreach ($errors->all() as $m)
@@ -28,6 +28,8 @@
                 <label>Описание</label>
                 <textarea name="text"></textarea>
             </div>
+            <input type="hidden" name="group" value="{{ $group }}">
+
             <button>Отправить</button>
         </form>
     </main>

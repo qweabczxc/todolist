@@ -5,20 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Quest extends Model
+class group_user extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
+        protected $fillable = [
         'name',
         'text',
         'solved',
-        'users_id',
-        'group_id'
+        'users_id'
     ];
-    public function group()
-{
-    return $this->belongsTo(Group::class);
-}
-
 }

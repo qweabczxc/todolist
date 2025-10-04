@@ -23,26 +23,23 @@
     <p class="session-message">{{ Session::get('error') }}</p>
 
     @endif
-    <form action="{{ route('logout') }}" method="post">
-        @csrf
-        <button class="quit">Выход</button>
-    </form>
+
+@include('someWAT.sidebar')
 
     <main>
-        <p class="TopText">Название</p>
+        <div class="wata">
+            <p class="TopText">Надо выполнить</p>
 
         @if(count($quests) > 0)
         @foreach($quests as $quest)
-        @if($quest->users_id == Auth::id())
-        
+        @if($quest->solved == 0)
    
         
     
-        <div class="table">
+        <div class="table" onclick="window.location='{{ route('quest.show', $quest->id) }}'" style="cursor: pointer;">
             
             <div class="test">
 
-            <input type="checkbox" name="solved" value="1" @checked($quest->solved) />
 
                 <p class="name">{{Str::limit($quest->name ,15  ) }}</p>
 
@@ -52,9 +49,8 @@
             <div class="buttons">
                 <div class="wrapper">
                     <a href="{{ route('quest.edit', $quest->id) }}" class="edit abuttons"><span>Изменить</span></a>
-                    <a href="{{ route('quest.show', $quest->id) }}" class="view abuttons"><span>Просмотр</span></a>
                 </div>
-                <form method="post" action="{{ route('quest.destroy') }}">
+                <form method="post" action="{{ route('quest.destroy',  $quest->id) }}">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="quest_id" value="{{ $quest->id }}">
@@ -65,13 +61,95 @@
         </div>
         
         @endif
-        
         @endforeach
 
-
+ 
         @endif
+        </div>
+                <div class="wata">
+            <p class="TopText">Выполняется</p>
+
+        @if(count($quests) > 0)
+        @foreach($quests as $quest)
+       @if($quest->solved == 1)
+   
+        
+    
+                <div class="table" onclick="window.location='{{ route('quest.show', $quest->id) }}'" style="cursor: pointer;">
+            
+            <div class="test">
+
+
+                <p class="name">{{Str::limit($quest->name ,15  ) }}</p>
+
+            </div>
+
+
+            <div class="buttons">
+                <div class="wrapper">
+                    <a href="{{ route('quest.edit', $quest->id) }}" class="edit abuttons"><span>Изменить</span></a>
+                </div>
+                <form method="post" action="{{ route('quest.destroy',  $quest->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="quest_id" value="{{ $quest->id }}">
+                    <button class="delete abuttons"><span>Удалить</span></button>
+                </form>
+            </div>
+
+        </div>
+        
+       @endif
+        @endforeach
+
+ 
+        @endif
+                </div>
+                <div class="wata">
+            <p class="TopText">Выполнено</p>
+
+        @if(count($quests) > 0)
+        @foreach($quests as $quest)
+        @if($quest->solved == 2)
+   
+        
+    
+                <div class="table" onclick="window.location='{{ route('quest.show', $quest->id) }}'" style="cursor: pointer;">
+            
+            <div class="test">
+
+
+                <p class="name">{{Str::limit($quest->name ,15  ) }}</p>
+
+            </div>
+
+
+            <div class="buttons">
+                <div class="wrapper">
+                    <a href="{{ route('quest.edit', $quest->id) }}" class="edit abuttons"><span>Изменить</span></a>
+                </div>
+                <form method="post" action="{{ route('quest.destroy', $quest->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="quest_id" value="{{ $quest->id }}">
+                    <button class="delete abuttons"><span>Удалить</span></button>
+                </form>
+            </div>
+
+        </div>
+        
+        @endif
+        @endforeach
+
+ 
+        @endif
+        </div>
         <div class="double_main">
-            <a href="{{ route('quest.create') }}" class="create"><span>Создать</span></a>
+<a href="{{ route('quest.create') }}?group={{ $group }}" class="create"><span>Создать</span></a>
+
+
+
+
         </div>
     </main>
 </body>
